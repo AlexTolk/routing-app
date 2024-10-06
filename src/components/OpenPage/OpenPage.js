@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
-import './OpenPage.css'
+import './OpenPage.css';
 
 const OpenPage = () => {
   const [url, setUrl] = useState('');
 
+  const isValidUrl = (string) => {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;  
+    }
+  };
+
   const openNewPage = () => {
-    window.open(url, '_blank');
+    if (isValidUrl(url)) {
+      window.open(url, '_blank');
+      setUrl('');
+    } else {
+      alert('Please enter a valid URL. Make sure to include http:// or https://');
+    }
   };
 
   return (
@@ -25,3 +39,4 @@ const OpenPage = () => {
 };
 
 export default OpenPage;
+
