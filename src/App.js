@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './components/Home/Home';
+import RedirectPage from './components/RedirectPage/RedirectPage';
+import ClosePage from './components/ClosePage/ClosePage';
+import OpenPage from './components/OpenPage/OpenPage';
 
-function App() {
+import './App.css'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/redirect">Redirect</Link></li>
+          <li><Link to="/close">Close</Link></li>
+          <li><Link to="/open">Open</Link></li>
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/redirect" element={<RedirectPage />} />
+        <Route path="/close" element={<ClosePage />} />
+        <Route path="/open" element={<OpenPage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
+
