@@ -1,16 +1,26 @@
 import React from 'react';
+import './ClosePage.css'
 
 const ClosePage = () => {
   const closeWindow = () => {
-    window.close();
+    if (window.confirm("Are you sure you want to close this window?")) {
+      window.open("about:blank", "_self");
+      window.close();
+    }
   };
 
   return (
-    <div>
+    <div className='close-container'>
       <h1>Close Page</h1>
-      <button onClick={closeWindow}>Close Window</button>
+      <button 
+        onClick={closeWindow} 
+        className='close-button'
+      >
+        Close Window
+      </button>
     </div>
   );
 };
 
 export default ClosePage;
+
